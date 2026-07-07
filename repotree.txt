@@ -1,0 +1,47 @@
+FedHedge/
+├── data/                       # [DO NOT PUSH TO GITHUB] Local data storage
+│   ├── raw/                    # Raw OHLCV CSVs from ccxt
+│   └── processed/              # Cleaned data, engineered features (Non-IID simulated)
+│
+├── clients/                    # Isolated local environments (The Exchanges)
+│   ├── base_client.py          # Parent PyTorch/Flower client class
+│   ├── binance_client.py       # Execution script for Client 1
+│   └── kraken_client.py        # Execution script for Client 2
+│
+├── server/                     # Global Federated Aggregator
+│   ├── strategy.py             # Custom aggregation strategy (FedAvg, FedProx)
+│   └── server_main.py          # Script to start the Flower global server
+│
+├── models/                     # PyTorch Neural Network definitions
+│   ├── deep_hedging_net.py     # Base NN architecture (e.g., LSTM, MLP)
+│   └── loss_functions.py       # Custom loss (cVaR, hedging error)
+│
+├── utils/                      # Helper modules
+│   ├── data_processor.py       # Feature scaling, non-IID splitting logic
+│   └── metrics.py              # Financial evaluation metrics calculations
+│
+├── step1_setup_and_fetch.py    # The initialization script we just wrote
+├── requirements.txt            # Python dependencies
+├── PROJECT_BLUEPRINT.md        # AI context and project roadmap tracker
+├── .gitignore                  # Git ignore rules
+└── README.md                   # Public project documentation
+
+
+
+
+fedhedge/
+├── data_feed/                  # Module Cào và Xử lý dữ liệu (ETL)
+│   ├── stream_binance.py
+│   ├── stream_okx.py
+│   └── feature_engineering.py  # Tính toán RSI, MACD, Volatility
+├── models/                     # Module Định nghĩa Kiến trúc Mạng Neural
+│   ├── actor_critic.py         # Mạng RL cốt lõi
+│   └── federated_server.py     # Flower Server tổng hợp trọng số
+├── risk_management/            # KHU VỰC QUAN TRỌNG NHẤT: Đo lường rủi ro
+│   ├── metrics.py              # Tính Sharpe, Sortino, MDD, VaR
+│   └── position_sizing.py      # Tính toán khối lượng lệnh an toàn
+├── backtest/                   # Môi trường giả lập giao dịch (Gym Environment)
+│   ├── market_env.py           # Mô phỏng slippage, transaction costs
+│   └── evaluator.py            # So sánh PnL của Local vs Federated
+├── configs/                    # Các file config (JSON/YAML) thay vì hardcode
+└── main_experiment.py          # File chạy tổng phối hợp các module

@@ -1,0 +1,15 @@
+# Ignore local data
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*~
+.venv/
+venv/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
